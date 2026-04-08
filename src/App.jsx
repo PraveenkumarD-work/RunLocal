@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { MODEL_DATABASE } from './modelDatabase';
 import { detectHardware } from './hardwareDetection';
 import {
@@ -857,6 +858,7 @@ export default function App() {
         </p>
       </footer>
 
+      <Analytics />
     </div>
   );
 }
