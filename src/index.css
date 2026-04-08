@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+/* ── Design tokens ───────────────────────────────────────── */
+:root {
+  --bg:          #F8F9FB;
+  --surface:     #FFFFFF;
+  --surface-2:   #F1F3F7;
+  --border:      #E4E7ED;
+  --border-2:    #D0D5DD;
+
+  --text-1:      #0F1117;
+  --text-2:      #4B5563;
+  --text-3:      #9CA3AF;
+
+  --green:       #16A34A;
+  --green-bg:    #F0FDF4;
+  --green-border:#BBF7D0;
+
+  --amber:       #D97706;
+  --amber-bg:    #FFFBEB;
+  --amber-border:#FDE68A;
+
+  --red:         #DC2626;
+  --red-bg:      #FFF5F5;
+  --red-border:  #FECACA;
+
+  --accent:      #2563EB;
+  --accent-bg:   #EFF6FF;
+  --accent-light:#DBEAFE;
+
+  --radius-sm:   6px;
+  --radius:      12px;
+  --radius-lg:   16px;
+
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow:      0 4px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-lg:   0 12px 32px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text-1);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 10px; }
+
+/* ── Hero background ─────────────────────────────────────── */
+.hero-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(37,99,235,0.08) 0%, transparent 70%),
+    var(--bg);
+}
+
+/* ── Scan animation ──────────────────────────────────────── */
+@keyframes scanPulse {
+  0%   { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+.scan-ring {
+  animation: scanPulse 1.4s ease-out infinite;
+}
+
+/* ── Progress bar ────────────────────────────────────────── */
+@keyframes progressFill {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* ── Fade-in-up ──────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.5s ease-out forwards;
+}
+.fade-up-1 { animation-delay: 0.05s; }
+.fade-up-2 { animation-delay: 0.15s; }
+.fade-up-3 { animation-delay: 0.25s; }
+.fade-up-4 { animation-delay: 0.38s; }
+.fade-up-5 { animation-delay: 0.50s; }
+
+/* ── Card entrance ───────────────────────────────────────── */
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card-in {
+  opacity: 0;
+  animation: cardIn 0.4s ease-out forwards;
+}
+
+/* ── Tier pill pulse ─────────────────────────────────────── */
+@keyframes gentlePulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+.tier-smooth { animation: gentlePulse 3s ease-in-out infinite; }
+
+/* ── Model card hover ────────────────────────────────────── */
+.model-card {
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+  cursor: pointer;
+}
+.model-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+}
+
+/* ── Copy tooltip ────────────────────────────────────────── */
+.copy-tip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text-1);
+  color: #fff;
+  font-size: 11px;
+  font-family: 'Inter', sans-serif;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: fadeUp 0.15s ease-out;
+}
+.copy-tip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--text-1);
+}
+
+/* ── CTA button pulse ────────────────────────────────────── */
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37,99,235,0.25); }
+  50%       { box-shadow: 0 0 0 8px rgba(37,99,235,0); }
+}
+.cta-pulse { animation: ctaPulse 2.4s ease-in-out infinite; }
+
+/* ── Spec line animation ─────────────────────────────────── */
+@keyframes specIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.spec-line {
+  opacity: 0;
+  animation: specIn 0.35s ease-out forwards;
+}
+
+/* ── Expand panel animation ──────────────────────────────── */
+@keyframes expandIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.expand-panel { animation: expandIn 0.2s ease-out; }
